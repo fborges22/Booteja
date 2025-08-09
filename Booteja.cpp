@@ -1,6 +1,6 @@
-// efi_enum.cpp
+// La Booteja main entry point :O
 // Enumerate EFI Boot entries on Windows (UEFI) using GetFirmwareEnvironmentVariableExW
-// Build: cl /EHsc /W4 /DUNICODE /D_UNICODE efi_enum.cpp
+// Build: cl /EHsc /W4 /DUNICODE /D_UNICODE Booteja.cpp
 
 #include <windows.h>
 #include <iostream>
