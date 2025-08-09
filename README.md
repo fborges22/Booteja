@@ -1,6 +1,20 @@
 # La Booteja 🫙🪟🐧
 
-An EFI/UEFI utility for Windows to **list, select, and change boot entries and related options**.
+This project is an EFI/UEFI utility for Windows to **list, select, and change boot entries and related options**. 
+
+## Overview
+
+La **Booteja** is a Windows-native CLI that manipulates UEFI boot configuration directly from userland. It focuses on the core boot variables that determine which EFI application or OS loader your firmware starts.
+
+Typical tasks include:
+
+* Viewing all `Boot####` entries and the current `BootOrder`
+* Changing the default boot target
+* Scheduling a one-time boot via `BootNext`
+* Enabling/disabling or renaming boot entries
+* Adjusting boot timeout and related options
+
+Booteja is **not** a replacement for Windows Boot Manager or `bcdedit`—it complements them by working at the UEFI variable level.
 
 > ⚠️ **Risk warning:** Modifying UEFI variables can make a system unbootable. Use at your own risk. Test in a VM or non‑critical machine first and ensure you have recovery media ready.
 
@@ -26,20 +40,6 @@ An EFI/UEFI utility for Windows to **list, select, and change boot entries and r
 * [License](#license)
 
 ---
-
-## Overview
-
-**Booteja** is a Windows-native CLI that manipulates UEFI boot configuration directly from userland. It focuses on the core boot variables that determine which EFI application or OS loader your firmware starts.
-
-Typical tasks include:
-
-* Viewing all `Boot####` entries and the current `BootOrder`
-* Changing the default boot target
-* Scheduling a one-time boot via `BootNext`
-* Enabling/disabling or renaming boot entries
-* Adjusting boot timeout and related options
-
-Booteja is **not** a replacement for Windows Boot Manager or `bcdedit`—it complements them by working at the UEFI variable level.
 
 ## Features
 
