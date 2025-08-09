@@ -1,4 +1,4 @@
-# Booteja
+# La Booteja 🫙🪟🐧
 
 An EFI/UEFI utility for Windows to **list, select, and change boot entries and related options**.
 
