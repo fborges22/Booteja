@@ -11,6 +11,8 @@
 #include <sstream>
 #include <algorithm>
 #include <cctype>
+#include <io.h>
+#include <fcntl.h>
 
 // Link against Advapi32 for token privilege APIs
 #pragma comment(lib, "Advapi32.lib")
@@ -242,7 +244,8 @@ int cmd_dump() {
 }
 
 void PrintHelp() {
-    std::wcout << L"Booteja — Windows UEFI Boot utility\n\n"
+    std::wcout
+        << L"Booteja — Windows UEFI Boot utility\n\n"
         << L"Usage: booteja <command> [options]\n\n"
         << L"Commands:\n"
         << L"  list                              List Boot#### entries and BootOrder\n"
@@ -254,15 +257,23 @@ void PrintHelp() {
         << L"  rename <id> \"New Label\"          Rename entry description\n"
         << L"  dump                              Raw sizes/attrs diagnostic\n"
         << L"\nExamples:\n  booteja list\n  booteja order\n  booteja select 0003\n  booteja next 0004\n  booteja order set 0004,0001,0003,0002\n  booteja rename 0002 \"Ubuntu NVMe\"\n";
+    std::wcout.flush();
 }
 
 int wmain(int argc, wchar_t** argv) {
+    _setmode(_fileno(stdout), _O_U16TEXT);
+    _setmode(_fileno(stderr), _O_U16TEXT);
+
     std::wcout << L"Booteja (Windows / UEFI)\n";
     if (!EnableSystemEnvironmentPrivilege()) {
         std::wcerr << L"Warning: Could not enable SeSystemEnvironmentPrivilege. Run elevated on a UEFI system.\n";
     }
 
-    if (argc < 2) { PrintHelp(); return 0; }
+    if (argc < 2) {
+        PrintHelp();
+        return 0;
+    }
+
     std::wstring cmd = argv[1]; std::transform(cmd.begin(), cmd.end(), cmd.begin(), ::towlower);
 
     if (cmd == L"list") return cmd_list();
