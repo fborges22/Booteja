@@ -12,6 +12,27 @@
 #include <algorithm>
 #include <cctype>
 
+// Link against Advapi32 for token privilege APIs
+#pragma comment(lib, "Advapi32.lib")
+
+// Some Windows SDKs don't expose EFI variable attribute flags in headers.
+// Define them if missing so SetFirmwareEnvironmentVariableExW gets valid attrs.
+#ifndef EFI_VARIABLE_NON_VOLATILE
+#define EFI_VARIABLE_NON_VOLATILE            0x00000001
+#endif
+#ifndef EFI_VARIABLE_BOOTSERVICE_ACCESS
+#define EFI_VARIABLE_BOOTSERVICE_ACCESS      0x00000002
+#endif
+#ifndef EFI_VARIABLE_RUNTIME_ACCESS
+#define EFI_VARIABLE_RUNTIME_ACCESS          0x00000004
+#endif
+// Define EFI variable attributes for Windows build
+#ifndef EFI_VARIABLE_NON_VOLATILE
+#define EFI_VARIABLE_NON_VOLATILE        0x00000001
+#define EFI_VARIABLE_BOOTSERVICE_ACCESS  0x00000002
+#define EFI_VARIABLE_RUNTIME_ACCESS      0x00000004
+#endif
+
 static const wchar_t* EFI_GLOBAL_VARIABLE_GUID = L"{8BE4DF61-93CA-11D2-AA0D-00E098032B8C}";
 
 // UEFI Load Option Attributes (subset)
