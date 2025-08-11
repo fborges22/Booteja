@@ -185,26 +185,6 @@ No for listing and most edits. For `create`, you must provide a valid *EFI appli
 **Will this work with Secure Boot enabled?**
 Reading usually works; writing may be restricted by firmware policy.
 
-## Development
-
-### Project layout (suggested)
-
-```
-/booteja
-  /src
-    main.cpp
-    cli.cpp
-    uefi.cpp         # Get/SetFirmwareEnvironmentVariable wrappers
-    device_path.cpp
-  /include
-    booteja/cli.hpp
-    booteja/uefi.hpp
-    booteja/device_path.hpp
-  booteja.sln
-  README.md
-  LICENSE
-```
-
 ### Coding notes
 
 * Prefer **RAII** for buffer management and handles
